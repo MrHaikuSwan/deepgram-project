@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Deepgram Project UI</title>
+    </head>
+    <body>
+        <h1>Deepgram Project Browser UI</h1>
+        <h2>Audio File Upload</h2>
+        <form action="/post" enctype="multipart/form-data" method="post">
+            <input type="file" id="uiFileSubmit" name="file">
+            <input type="submit">
+        </form>
+        <h2>Currently Stored Audio Files</h2>
+        <table>
+            <tr>
+                <th>Filename</th>
+                <th>Duration (sec)</th>
+                <th>Bitrate (bits/s)</th>
+                <th>Channels</th>
+                <th>Sample Rate (Hz)</th>
+            </tr>
+            {% for file in files %}
+            <tr>
+                <td><a href="/download?name={{file.filename}}">{{file.filename}}</a></td>
+                <td>{{file.duration|round(3)}}</td>
+                <td>{{file.bitrate}}</td>
+                <td>{{file.channels}}</td>
+                <td>{{file.sample_rate}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
